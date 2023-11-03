@@ -2,7 +2,7 @@
 
 Create stipples on the outside of polygon boundaries for an old-time cartographic effect.  Stipples closer to the source polygon will be more dense and as the distance increased the stipple effect is decreased (stipple density decays with distance from polygon).
 
-This tool accepts a polygon feature class and outputs stipples (shoreline stipples) for a user-defined range of values.  The input data must reference a Euclidean coordinate reference system (CRS) like State Plane or UTM.  The input data define the CRS for the project.  All units of measurements for the user-defined arguments will reference the CRS units of measurement.
+This tool accepts a polygon feature class and outputs stipples (shoreline stipples) for a user-defined range of values.  The input data must reference a Euclidean coordinate reference system (CRS) like State Plane or UTM.  The input data define the CRS for the project.  All values for the user-defined arguments will reference the CRS units of measurement.
 
 Inputs:
 in_fc = the path and file name to the polygon featureclass.
