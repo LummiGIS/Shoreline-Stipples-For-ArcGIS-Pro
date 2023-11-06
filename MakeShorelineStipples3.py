@@ -105,6 +105,7 @@ try:
         stipples = os.path.join(output_location, 'stipple.tif')
         stipple_con.save(stipples)        
         return stipples
+        
     def delete_trash(buffer_fc, random_ras, masked_euclid, out_reclass_Euclid_path, out_Euclid_path):
         arcpy.AddMessage('Collecting and deleting garbage...')
         arcpy.management.Delete(buffer_fc)
