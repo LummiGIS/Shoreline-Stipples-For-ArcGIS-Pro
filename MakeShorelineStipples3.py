@@ -3,7 +3,6 @@ import os
 import sys
 import traceback
 
-
 try:
     def set_env_settings(stipple_cell_size, in_fc):
         arcpy.AddMessage('Setting environment settings...')
@@ -106,7 +105,13 @@ try:
         stipples = os.path.join(output_location, 'stipple.tif')
         stipple_con.save(stipples)        
         return stipples
-        
+    def delete_trash(buffer_fc, random_ras, masked_euclid, out_reclass_Euclid_path, out_Euclid_path):
+        arcpy.AddMessage('Collecting and deleting garbage...')
+        arcpy.management.Delete(buffer_fc)
+        arcpy.management.Delete( random_ras)
+        arcpy.management.Delete(masked_euclid)
+        arcpy.management.Delete(out_reclass_Euclid_path)
+        arcpy.management.Delete(out_Euclid_path)
     
     def main(in_fc, output_location, stipple_cell_size, stipple_distance, filter):
         
@@ -121,22 +126,21 @@ try:
         out_reclass_Euclid_path = reclass_euclid(output_location, masked_euclid, bin_string)
         make_stipple(output_location, out_reclass_Euclid_path, filter)
         print('Finished without error...')
+        delete_trash(buffer_fc, random_ras, masked_euclid, out_reclass_Euclid_path, out_Euclid_path)
         
         
     if __name__ == "__main__":
-        
-        ##############                set parameters here           #############
+
         #this is the polygon data to stipple.  These data set the CRS and should use a Euclidean coordinate reference system.
-        in_fc = r'Z:\Data\Boundaries\Administrative\County.gdb\Other\SanJuanIslands'
+        in_fc = arcpy.GetParameterAsText(0)
         #This is the working directory for this project.  All outputs are stored here.....
-        output_location = r"Z:\GISpublic\GerryG\Python3\ShorelineStipples3"
+        output_location = arcpy.GetParameterAsText(1)
         #This is the raster cell output size in CRS units of measure.
-        stipple_cell_size = 100
+        stipple_cell_size = int(arcpy.GetParameterAsText(2))
         #This is the mazimum distance to build stipples in the CRS units of measure...
-        stipple_distance = 5280
+        stipple_distance = int(arcpy.GetParameterAsText(3))
         #Random pixels are filtered using this value.  Values between 30 to 50 seem to work well....
-        filter = 20
-        ########################################################################
+        filter = int(arcpy.GetParameterAsText(4))
         
         main(in_fc, output_location, stipple_cell_size, stipple_distance, filter)
     
@@ -144,6 +148,3 @@ except:
     tb = sys.exc_info()[2]
     tbinfo = traceback.format_tb(tb)[0]
     print ("PYTHON ERRORS:\nTraceback info:\n" + tbinfo + "\nError Info:\n" + str(sys.exc_info()[1]))
-    
-
-    
