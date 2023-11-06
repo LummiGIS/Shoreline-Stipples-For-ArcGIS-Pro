@@ -4,6 +4,10 @@ Create stipples on the outside of polygon boundaries for an old-time cartographi
 
 This tool accepts a polygon feature class and outputs stipples.tif (shoreline stipples) in the user directory. Stipples are created for a user-defined distance and filtered for a better cartographic effect.  The input polygon data must reference a Euclidean coordinate reference system (CRS) like State Plane or UTM.  The input data define the CRS for the project.  All values for the user-defined arguments will reference the CRS units of measurement.
 
+The tool is currently set to overwrite outputs so either comment out that yourself or exercise caution.  Upon execution a file (stipples.tif) will be created in the working directory.
+
+
+
 
 Inputs:
 
