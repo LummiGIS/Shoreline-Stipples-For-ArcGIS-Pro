@@ -6,7 +6,7 @@ This tool accepts a polygon feature class and outputs stipples.tif (shoreline st
 
 The tool is currently set to overwrite outputs so either comment out that yourself or exercise caution.  Upon execution a file (stipples.tif) will be created in the working directory.
 
-
+This tool requires a spatial analyst license.
 
 
 Inputs:
